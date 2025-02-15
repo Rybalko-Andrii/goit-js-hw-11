@@ -1,2 +1,13 @@
-/* empty css                      */(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const o of r.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();
+import{a as f,S as m,i}from"./assets/vendor-tnUJPedx.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&n(a)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();const y="48820894-4cea1e59d649a954e9231553f",d="https://pixabay.com/api/";async function g(o){try{return(await f.get(d,{params:{key:y,q:o,image_type:"photo",orientation:"horizontal",safesearch:!0}})).data.hits}catch(t){return console.error("Error fetching images:",t),[]}}const p=document.querySelector(".gallery");let l;function h(o){p.innerHTML=o.map(({webformatURL:t,largeImageURL:s,tags:n,likes:e,views:r,comments:a,downloads:u})=>`<li class="gallery-item">
+      <a href="${s}" class="gallery-link">
+        <img src="${t}" alt="${n}" />
+        <div class="info">
+          <p>Likes: ${e}</p>
+          <p>Views: ${r}</p>
+          <p>Comments: ${a}</p>
+          <p>Downloads: ${u}</p>
+        </div>
+      </a>
+      </li>
+    `).join(""),l?l.refresh():l=new m(".gallery a")}const L=document.querySelector(".search-form"),c=document.querySelector(".loader"),q=document.querySelector(".gallery");L.addEventListener("submit",async o=>{o.preventDefault();const t=o.target.elements.query.value.trim();if(!t){i.warning({message:"Please enter a search query!"});return}c.style.display="block",q.innerHTML="";try{const s=await g(t);if(s.length===0){i.error({message:"Sorry, there are no images matching your search query. Please try again!"});return}h(s)}catch{i.error({message:"Something went wrong. Please try again later."})}finally{c.style.display="none"}});
 //# sourceMappingURL=index.js.map
